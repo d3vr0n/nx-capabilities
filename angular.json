@@ -1,7 +1,254 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "ron-ticketing-admin": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "apps/ron-ticketing-admin",
+      "sourceRoot": "apps/ron-ticketing-admin/src",
+      "prefix": "nx-capabilities",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/ron-ticketing-admin",
+            "index": "apps/ron-ticketing-admin/src/index.html",
+            "main": "apps/ron-ticketing-admin/src/main.ts",
+            "polyfills": "apps/ron-ticketing-admin/src/polyfills.ts",
+            "tsConfig": "apps/ron-ticketing-admin/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/ron-ticketing-admin/src/favicon.ico",
+              "apps/ron-ticketing-admin/src/assets"
+            ],
+            "styles": ["apps/ron-ticketing-admin/src/styles.css"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ron-ticketing-admin/src/environments/environment.ts",
+                  "with": "apps/ron-ticketing-admin/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ron-ticketing-admin:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ron-ticketing-admin:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ron-ticketing-admin:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ron-ticketing-admin/tsconfig.app.json",
+              "apps/ron-ticketing-admin/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ron-ticketing-admin/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ron-ticketing-admin/jest.config.js",
+            "tsConfig": "apps/ron-ticketing-admin/tsconfig.spec.json",
+            "setupFile": "apps/ron-ticketing-admin/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "ron-ticketing-admin-e2e": {
+      "root": "apps/ron-ticketing-admin-e2e",
+      "sourceRoot": "apps/ron-ticketing-admin-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ron-ticketing-admin-e2e/cypress.json",
+            "tsConfig": "apps/ron-ticketing-admin-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ron-ticketing-admin:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ron-ticketing-admin:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ron-ticketing-admin-e2e/tsconfig.e2e.json"],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/ron-ticketing-admin-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "ron-ticketing": {
+      "root": "apps/ron-ticketing",
+      "sourceRoot": "apps/ron-ticketing/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "differentialLoading": false,
+            "outputPath": "dist/apps/ron-ticketing",
+            "index": "apps/ron-ticketing/src/index.html",
+            "main": "apps/ron-ticketing/src/main.tsx",
+            "polyfills": "apps/ron-ticketing/src/polyfills.ts",
+            "tsConfig": "apps/ron-ticketing/tsconfig.app.json",
+            "assets": [
+              "apps/ron-ticketing/src/favicon.ico",
+              "apps/ron-ticketing/src/assets"
+            ],
+            "styles": ["apps/ron-ticketing/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/babel"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/ron-ticketing/src/environments/environment.ts",
+                  "with": "apps/ron-ticketing/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "ron-ticketing:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "ron-ticketing:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/ron-ticketing/tsconfig.app.json",
+              "apps/ron-ticketing/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/ron-ticketing/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/ron-ticketing/jest.config.js",
+            "tsConfig": "apps/ron-ticketing/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "ron-ticketing-e2e": {
+      "root": "apps/ron-ticketing-e2e",
+      "sourceRoot": "apps/ron-ticketing-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ron-ticketing-e2e/cypress.json",
+            "tsConfig": "apps/ron-ticketing-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ron-ticketing:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ron-ticketing:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/ron-ticketing-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/ron-ticketing-e2e/**"]
+          }
+        }
+      }
+    }
+  },
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
-  }
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/react": {
+      "application": {
+        "babel": true,
+        "style": "css",
+        "linter": "tslint"
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "tslint"
+      }
+    }
+  },
+  "defaultProject": "ron-ticketing-admin"
 }

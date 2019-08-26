@@ -7,5 +7,18 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "ron-ticketing-admin-e2e": {
+      "tags": []
+    },
+    "ron-ticketing-admin": {
+      "tags": []
+    },
+    "ron-ticketing": {
+      "tags": []
+    },
+    "ron-ticketing-e2e": {
+      "tags": []
+    }
+  }
 }
