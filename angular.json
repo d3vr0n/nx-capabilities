@@ -169,7 +169,8 @@
         "serve": {
           "builder": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "ron-ticketing:build"
+            "buildTarget": "ron-ticketing:build",
+            "port": 4201
           },
           "configurations": {
             "production": {
